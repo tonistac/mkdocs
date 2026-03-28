@@ -1,74 +1,85 @@
-# HealthPulse DevOps Documentation
+# HealthPulse Portal
 
-Welcome to the **HealthPulse Portal** DevOps documentation site. This documentation is maintained as code — Markdown files in Git, built with MkDocs Material, and served via Docker.
+---
+
+## Team Devius
+
+---
+
+### Team Members
+
+| Team Member | Role          | email                  |
+| ----------- | ------------- | ---------------------- |
+| **Kamsi**   | Team Lead     | Uwah14@outlook.com     |
+| **CJ**      | Ast Team Lead | dokes3@live.com        |
+| **Emeka**   | Team Member   | emyugwu2021@gmail.com  |
+| **George**  | Team Member   | geeone2002@yahoo.com   |
+| **Kene**    | Team Member   | chinekene@gmail.com    |
+| **Victor**  | Team Member   | ifeanyimba17@gmail.com |
 
 ---
 
 ## Project Overview
 
-**HealthPulse Inc.** is a healthcare technology startup that has built a patient portal as a React/TypeScript single-page application. The DevOps team is responsible for designing and implementing a complete CI/CD pipeline, multi-environment infrastructure, container orchestration, and observability platform on AWS.
+HealthPulse Portal is a healthcare web application built using React and TypeScript. The platform allows patients to:
 
-| Item | Detail |
-|------|--------|
-| **Application** | HealthPulse Patient Portal |
-| **Tech Stack** | React 18, TypeScript, Vite, Tailwind CSS |
+- View appointments
+- Access lab results
+- Manage medications
+- Communicate with healthcare providers
+
+| Item               | Detail                                     |
+| ------------------ | ------------------------------------------ |
+| **Application**    | HealthPulse Patient Portal                 |
+| **Tech Stack**     | React 18, TypeScript, Vite, Tailwind CSS   |
 | **Cloud Provider** | AWS (ECS Fargate, EKS, ALB, VPC, Route 53) |
-| **CI/CD** | Jenkins / GitLab CI / Azure DevOps |
-| **Monitoring** | Datadog |
+| **CI/CD**          | GitLab CI                                  |
+| **Monitoring**     | Datadog                                    |
 
 ---
 
-## Team Roster
+## Current Challenges
 
-<!-- Update this table with your team members -->
+The application is currently deployed manually:
 
-| Name | Role | Email | GitHub Handle |
-|------|------|-------|---------------|
-| _Team Member 1_ | _DevOps Lead_ | _email@example.com_ | _@handle_ |
-| _Team Member 2_ | _Cloud Engineer_ | _email@example.com_ | _@handle_ |
-| _Team Member 3_ | _CI/CD Engineer_ | _email@example.com_ | _@handle_ |
-| _Team Member 4_ | _SRE / Monitoring_ | _email@example.com_ | _@handle_ |
+1. Build is run locally (`npm run build`)
+2. Files are transferred via SCP
+3. Server is accessed via SSH to restart Nginx
+
+This process:
+
+- Takes ~45 minutes per deployment
+- Is error-prone
+- Has caused multiple production outages
+- Has no automated testing, security scanning, or monitoring
+
+---
+
+## Project Goal
+
+Team Devius is responsible for transforming this into a **modern DevOps system** using:
+
+- CI/CD pipelines
+- Docker containerization
+- AWS infrastructure
+- Monitoring and observability tools
+
+---
+
+## What We Are Building
+
+- Automated CI/CD pipeline (GitLab CI)
+- Containerized application using Docker
+- Deployment to AWS (ECS/EKS)
+- Monitoring with Datadog
+- Security scanning with Snyk
+- Code quality analysis with SonarQube
 
 ---
 
 ## Quick Links
 
-### Documentation
-
-| Page | What It's For |
-|------|---------------|
-| [Architecture Decisions](architecture.md) | ADRs for CI/CD platform, orchestration, etc. |
-| [Environment Matrix](environments.md) | Dev/UAT/QA/Prod IPs, URLs, sizing |
-| [CI/CD Pipeline](pipeline.md) | Pipeline stages, tools, config notes |
-| [Setup Template](setup-template.md) | Copy this for each tool you install (Jenkins, SonarQube, etc.) |
-| [Runbooks](runbooks.md) | Deploy, rollback, scale, incident response |
-| [Incident Log](incidents.md) | Track every issue and how you fixed it |
-| [Changelog](changelog.md) | What was built, when, and by whom |
-
-### External Tools
-
-| Resource | Link |
-|----------|------|
-| Application Repo | _`<link to HealthPulse_App repo>`_ |
-| Deployment Repo | _`<link to HealthPulse_Deployment repo>`_ |
-| Datadog Dashboard | _`<link to Datadog>`_ |
-| SonarQube | _`<link to SonarQube>`_ |
-| Artifactory | _`<link to JFrog Artifactory>`_ |
+- Dev Environment: http://localhost:8084
+- Prod Docs: http://localhost:84
 
 ---
-
-## Getting Started
-
-```bash
-# Clone the deployment repository
-git clone <your-deployment-repo-url>
-cd healthpulse-capstone
-
-# Start the docs site locally (dev mode with live reload)
-cd docs && docker-compose up docs-dev
-# Docs available at http://localhost:8084
-
-# Build and serve docs (production mode)
-cd docs && docker-compose up docs-prod
-# Docs available at http://localhost:84
-```
